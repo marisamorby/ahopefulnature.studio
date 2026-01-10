@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/default.astro';
+import GradientColors from '../components/gradient-colors.astro';
+import Signup from '../components/signup.astro';
+---
+
+<Layout
+	title="Marisa Morby"
+	description="Marisa's digital garden with nature articles, design, and art."
+	image="https://example.com/image.jpg"
+>
+	<section class="home">
+		<div class="image">
+			<GradientColors />
+		</div>
+		<div class="text">
+			<h1>Hey there, I'm Marisa.</h1>
+
+			<h3>
+				I write <strong>A Hopeful Nature</strong>, a weekly newsletter
+				about nature, hope, and connection.
+			</h3
+			>
+
+			<Signup />
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.home {
+		display: flex;
+		gap: 100px;
+		align-items: center;
+		justify-content: start;
+	}
+
+	.text {
+		text-align: start;
+	}
+</style>
