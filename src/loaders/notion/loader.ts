@@ -253,8 +253,6 @@ export function notionLoader({
             const property_title = page.properties['Title'];
             const property_slug = page.properties['Slug'];
             const property_publishDate = page.properties['Publish date'];
-            const property_type = page.properties['Type'];
-            const property_topics = page.properties['Topics'];
             const property_share_description =
               page.properties['Sharing Description'];
             const property_share_image = page.properties['Sharing image'];
@@ -280,25 +278,40 @@ export function notionLoader({
               description,
               imageSrc,
               imageAlt,
-              type,
-              topics,
               blocks,
             ] = await Promise.all([
-              parseNotionProperty(property_title),
-              parseNotionProperty(property_slug),
-              parseNotionProperty(property_publishDate),
-              parseNotionProperty(property_share_description),
-              parseNotionProperty(property_share_image),
-              parseNotionProperty(property_share_image_alt),
-              parseNotionProperty(property_type),
-              parseNotionProperty(property_topics),
+              parseNotionProperty(property_title).catch((err) => {
+                console.log('error parsing Notion property title');
+                console.log(err);
+              }),
+              parseNotionProperty(property_slug).catch((err) => {
+                console.log('error parsing Notion property: slug');
+                console.log(err);
+              }),
+              parseNotionProperty(property_publishDate).catch((err) => {
+                console.log('error parsing Notion property: publishDate');
+                console.log(err);
+              }),
+              parseNotionProperty(property_share_description).catch((err) => {
+                console.log('error parsing Notion property: description');
+                console.log(err);
+              }),
+              parseNotionProperty(property_share_image).catch((err) => {
+                console.log('error parsing Notion property: share_image');
+                console.log(err);
+              }),
+              parseNotionProperty(property_share_image_alt).catch((err) => {
+                console.log('error parsing Notion property: share_image_alt');
+                console.log(err);
+              }),
               collectPaginatedAPI(notion.blocks.children.list, {
                 auth: integration_token,
                 block_id: page.id,
+              }).catch((err) => {
+                console.log('error parsing Notion blocks');
+                console.log(err);
               }),
             ]);
-
-            console.log(imageSrc);
 
             const data = await parseData({
               id: rt.plain_text,
@@ -307,8 +320,6 @@ export function notionLoader({
                 slug,
                 publishedAt,
                 description,
-                type,
-                topics,
                 image: {
                   src: imageSrc,
                   alt: imageAlt,

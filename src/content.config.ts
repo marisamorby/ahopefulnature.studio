@@ -1,5 +1,4 @@
 import { defineCollection, z } from 'astro:content';
-import { glob } from 'astro/loaders';
 import { notionLoader } from './loaders/notion/loader';
 
 export const types: readonly [string, ...string[]] = [
@@ -16,27 +15,6 @@ export const topics: readonly [string, ...string[]] = [
   'mind',
   'fiction',
 ];
-
-export const BlogSchema = z.object({
-  draft: z.boolean().optional().default(true),
-  title: z.string(),
-  publishedAt: z.date(),
-  type: z.enum(types),
-  topics: z.array(z.enum(topics)).optional().default([]),
-  image: z
-    .object({
-      src: z.string().url(),
-      alt: z.string().nullable().optional(),
-      caption: z.string().nullable().optional(),
-    })
-    .optional(),
-  description: z.string().optional(),
-});
-
-const blog = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
-  schema: BlogSchema,
-});
 
 const notionBlog = defineCollection({
   loader: notionLoader({
@@ -73,4 +51,4 @@ const notionBlog = defineCollection({
   }),
 });
 
-export const collections = { blog, notionBlog };
+export const collections = { notionBlog };
