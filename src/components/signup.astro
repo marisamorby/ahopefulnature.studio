@@ -35,14 +35,18 @@
 </form>
 
 <style>
-    form{
+    form {
         display:grid;
-        grid-template-columns: 162px 162px 162px;
+        grid-template-columns: 100%;
         gap: 10px;
         align-items: last baseline;
         justify-content: center;
+
+        @media (min-width: 520px) {
+          grid-template-columns: 162px 162px 162px;
+        }
     }
-    .input-group{
+    .input-group {
         font-size:small;
         text-align: left;
 
@@ -58,7 +62,7 @@
             background-color: #FFF7EE;
         }
     }
-    .submit-group{
+    .submit-group {
         inline-size: 100%;
 
         button{
@@ -66,7 +70,7 @@
             background: #755E43;
             border: 1px solid;
             height: 30px;
-            inline-size: 90%; 
+            inline-size: 100%; 
         }
         
     }
