@@ -11,7 +11,7 @@ export interface Props {
 const {
 	title,
 	description = 'A Hopeful Nature promotes connection and hope through nature.',
-	image = 'https://res.cloudinary.com/jlengstorf/image/upload/f_auto/q_auto/v1739753529/marisa-morby-og.jpg',
+	image = 'https://res.cloudinary.com/marisa/image/upload/v1768438087/Social_Media_Image_Sharing_cew6hx.png',
 } = Astro.props;
 ---
 
@@ -40,7 +40,7 @@ const {
 			<meta property="og:image:height" content="900" />
 			<meta
 				property="og:image:alt"
-				content={`Hey there, I'm Marisa. I connect people to nature through art, information design, and storytelling. I write Design & Nature Reimagined, a weekly newsletter about nature, design, and hope. Most days, you’ll find me in my garden, making ceramics, drawing, or writing.`}
+				content={title}
 			/>
 
 			<meta name="twitter:dnt" content="on" />
