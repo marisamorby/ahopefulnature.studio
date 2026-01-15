@@ -18,13 +18,6 @@ const { path, img, title, author, description, topics = [], type } = Astro.props
 ---
 
 <div class="blog-preview" data-type={type} data-topic={topics.join(' ')}>
-  <a href={path}>
-    {
-      img?.src ? (
-        <Image src={img?.src} alt={img?.alt} />
-      ) : null
-    }
-  </a>
 
   <h2><a href={path}>{title}</a></h2>
 
